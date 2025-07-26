@@ -15,7 +15,7 @@ namespace MemoFramework.Extension
 
         private void Start()
         {
-            DontDestroyOnLoad(gameObject);
+            if(transform.parent == null) DontDestroyOnLoad(gameObject);
             Base = MemoFrameworkEntry.GetComponent<BaseComponent>();
             Event = MemoFrameworkEntry.GetComponent<EventComponent>();
             Input = MemoFrameworkEntry.GetComponent<InputComponent>();

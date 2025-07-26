@@ -1,31 +1,37 @@
 using System;
 using System.Collections.Generic;
+using GMTK.EventArgs;
 using MemoFramework;
 using MemoFramework.Extension;
 using MemoFramework.GameState;
 using Unity.VisualScripting;
 using UnityEngine.ResourceManagement.ResourceLocations;
+using UnityEngine.SceneManagement;
 
-namespace M2.GameState
+namespace GMTK
 {
     public class MenuState : GameStateBase
     {
-        public MenuState(Action<State<string, string>> onEnter = null, Action<State<string, string>> onLogic = null,
-            Action<State<string, string>> onExit = null, Func<State<string, string>, bool> canExit = null,
-            bool needsExitTime = false, bool isGhostState = false) : base(onEnter, onLogic, onExit, canExit,
-            needsExitTime, isGhostState)
-        {
-        }
-
         protected override void OnStateEnter()
         {
             base.OnStateEnter();
+            SceneManager.LoadScene(SceneConstants.Menu);
+            MF.Event.Subscribe<OnRequireEnterGame>(RequireEnterGame);
         }
 
         protected override void OnStateExit()
         {
             base.OnStateExit();
+            MF.Event.Unsubscribe<OnRequireEnterGame>(RequireEnterGame);
         }
-        
+
+        private void RequireEnterGame(object sender, OnRequireEnterGame e)
+        {
+            MF.Cutscene.EnterCutScene(1, () =>
+            {
+                GameStateComponent.RequestStateChange(EGameState.Game.ToString());
+            });
+            
+        }
     }
 }

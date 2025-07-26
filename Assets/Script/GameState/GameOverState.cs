@@ -1,6 +1,6 @@
 using MemoFramework.GameState;
 
-namespace M2.GameState
+namespace GMTK
 {
     public class GameOverState : GameStateBase
     {

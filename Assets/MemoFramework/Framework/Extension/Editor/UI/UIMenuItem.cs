@@ -1,4 +1,4 @@
-#if TMP_EXIST
+#if TextMeshPro
 using TMPro;
 #endif
 
@@ -27,7 +27,7 @@ namespace MemoFramework.UI
         // resources
         private static Sprite s_9Sliced;
         private static Sprite s_mask;
-#if TMP_EXIST
+#if TextMeshPro
        
         private static TMP_FontAsset s_defaultFontAsset;
 
@@ -122,7 +122,7 @@ namespace MemoFramework.UI
 
             TextMeshProUGUI text = UIEditorUtils.AddComponent<TextMeshProUGUI>(childText);
             text.text = "";
-            text.textWrappingMode = TextWrappingModes.NoWrap;
+            // text.textWrappingMode = TextWrappingModes.NoWrap;
             text.extraPadding = true;
             text.richText = true;
             text.fontSize = 14;
@@ -133,7 +133,7 @@ namespace MemoFramework.UI
             placeholder.text = "输入文本...";
             placeholder.fontSize = 14;
             placeholder.fontStyle = FontStyles.Italic;
-            placeholder.textWrappingMode = TextWrappingModes.NoWrap;
+            // placeholder.textWrappingMode = TextWrappingModes.NoWrap;
             placeholder.font = s_defaultFontAsset;
             placeholder.extraPadding = true;
 

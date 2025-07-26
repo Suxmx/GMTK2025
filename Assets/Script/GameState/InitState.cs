@@ -3,7 +3,7 @@ using MemoFramework;
 using MemoFramework.GameState;
 using UnityEngine;
 
-namespace M2.GameState
+namespace GMTK
 {
     public class InitState : GameStateBase
     {

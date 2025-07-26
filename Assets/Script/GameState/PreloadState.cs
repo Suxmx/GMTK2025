@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using Object = UnityEngine.Object;
 
-namespace M2.GameState
+namespace GMTK
 {
     public class PreloadState : GameStateBase
     {

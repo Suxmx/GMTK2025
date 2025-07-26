@@ -1,4 +1,4 @@
-namespace M2.GameState
+namespace GMTK
 {
     public enum EGameState : ushort
     {

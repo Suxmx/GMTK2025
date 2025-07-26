@@ -22,7 +22,7 @@ namespace MemoFramework.Extension
 
         private static class SceneHelper
         {
-            public static readonly string EntryScenePath = "Assets/MemoFramework/Res/Scenes/Launcher.unity";
+            public static readonly string EntryScenePath = "Assets/Res/Scene/Launcher.unity";
             private const string UnityEditorSceneToOpenKey = "UnityEditorSceneToOpen";
 
             [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
