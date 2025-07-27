@@ -73,6 +73,46 @@ MonoBehaviour:
       - "\u8FD4\u56DE\u6E38\u620F"
       Flags: 0000
       Languages_Touch: []
+    - Term: "\u97F3\u91CF"
+      TermType: 0
+      Description: 
+      Languages:
+      - Volume
+      - "\u97F3\u91CF"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: "\u8BED\u8A00"
+      TermType: 0
+      Description: 
+      Languages:
+      - Language
+      - "\u8BED\u8A00"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: SwitchLanguage
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u5207\u6362\u4E3A\u4E2D\u6587"
+      - Switch To English
+      Flags: 0000
+      Languages_Touch: []
+    - Term: "\u6D4B\u8BD5"
+      TermType: 0
+      Description: 
+      Languages:
+      - Test
+      - "\u6D4B\u8BD5"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: "\u8FD4\u56DE"
+      TermType: 0
+      Description: 
+      Languages:
+      - Return
+      - "\u8FD4\u56DE"
+      Flags: 0000
+      Languages_Touch: []
     CaseInsensitiveTerms: 0
     OnMissingTranslation: 1
     mTerm_AppName: 

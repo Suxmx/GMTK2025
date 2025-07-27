@@ -8,7 +8,7 @@ namespace GMTK
         protected override void OnStateEnter()
         {
             base.OnStateEnter();
-            MF.Cutscene.EnterCutScene(1, () =>
+            MF.Cutscene.EnterCutScene(GlobalConstants.CutSceneEnterDuration, () =>
             {
                 GameStateComponent.RequestStateChange(EGameState.Menu.ToString());
             });
@@ -17,7 +17,7 @@ namespace GMTK
         protected override void OnStateExit()
         {
             base.OnStateExit();
-            MF.Cutscene.FadeCutScene(1);
+            MF.Cutscene.FadeCutScene(GlobalConstants.CutSceneFadeDuration);
         }
     }
 }

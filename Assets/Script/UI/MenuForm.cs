@@ -13,6 +13,17 @@ namespace GMTK.UI
         [SerializeField] private Button enterBtn;
         [SerializeField] private Button settingBtn;
         [SerializeField] private Button exitBtn;
+
+        private void Awake()
+        {
+            PanelManager.Instance?.RegisterPanel(PanelId.Menu,gameObject);
+        }
+
+        private void OnDestroy()
+        {
+            PanelManager.Instance?.UnregisterPanel(PanelId.Menu);
+        }
+
         private void OnEnable()
         {
             RegisterEvents();
@@ -44,13 +55,17 @@ namespace GMTK.UI
         }
         private void OnClickSettings()
         {
+            PanelManager.Instance.CheckShow(PanelId.Setting,true);
         }
 
         private void OnClickExit()
         {
-            // 退出游戏
             Debug.Log("退出游戏");
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
             Application.Quit();
+#endif
         }
     }
 }

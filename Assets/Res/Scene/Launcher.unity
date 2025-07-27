@@ -122,6 +122,57 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &149295625
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 149295626}
+  - component: {fileID: 149295627}
+  m_Layer: 0
+  m_Name: PanelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &149295626
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149295625}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 301871023}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &149295627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149295625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7758f7335f9490f887abef60b5da201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelConfigs:
+  - PanelId: 1
+    PanelPrefab: {fileID: 8163764849034603095, guid: 67e6c76a284918b4fb660200baf36363, type: 3}
+  - PanelId: 2
+    PanelPrefab: {fileID: 4218289832291093126, guid: cf70cecb12914b84f80cd2ea74694ce2, type: 3}
+  - PanelId: 3
+    PanelPrefab: {fileID: 1702386277289342449, guid: ce462d659c0bb2143bdadd9f967282bd, type: 3}
 --- !u!1001 &301871022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -184,9 +235,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2399344029991642236, guid: 1921fb1904db0cf49b8c9818fd429f52, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 149295626}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1921fb1904db0cf49b8c9818fd429f52, type: 3}
+--- !u!4 &301871023 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2399344029991642236, guid: 1921fb1904db0cf49b8c9818fd429f52, type: 3}
+  m_PrefabInstance: {fileID: 301871022}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

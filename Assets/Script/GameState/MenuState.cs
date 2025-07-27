@@ -16,6 +16,10 @@ namespace GMTK
         {
             base.OnStateEnter();
             SceneManager.LoadScene(SceneConstants.Menu);
+            if (MF.Cutscene.IsPlaying)
+            {
+                MF.Cutscene.FadeCutScene(GlobalConstants.CutSceneFadeDuration);
+            }
             MF.Event.Subscribe<OnRequireEnterGame>(RequireEnterGame);
         }
 
@@ -27,7 +31,7 @@ namespace GMTK
 
         private void RequireEnterGame(object sender, OnRequireEnterGame e)
         {
-            MF.Cutscene.EnterCutScene(1, () =>
+            MF.Cutscene.EnterCutScene(GlobalConstants.CutSceneEnterDuration, () =>
             {
                 GameStateComponent.RequestStateChange(EGameState.Game.ToString());
             });

@@ -6,7 +6,8 @@ namespace GMTK
     {
         protected override void OnStateEnter()
         {
-            base.OnStateEnter();
+            base.
+                OnStateEnter();
         }
 
         protected override void OnStateExit()
