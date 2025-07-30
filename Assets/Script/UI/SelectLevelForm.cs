@@ -72,6 +72,7 @@ namespace GMTK.UI
         private void AssignAreaText()
         {
             AreaHeaderText.SetText(currentArea.areaName);
+            LevelHeaderText.SetText("");
             Debug.Log("Area Name Has Been Set!");
         }
 
