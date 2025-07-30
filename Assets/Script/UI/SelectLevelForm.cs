@@ -51,6 +51,7 @@ namespace GMTK.UI
         private void OnDisable()
         { 
             DestroyAllButtons();
+            
         }
         
         private void DestroyAllButtons()
@@ -100,7 +101,7 @@ namespace GMTK.UI
                 LevelButton levelButton = buttonGo.GetComponent<LevelButton>();
                 levelButton.SetUp(currentArea.levels[i], this,unlockedLevelIDs.Contains(currentArea.levels[i].levelID));
             }
-            MF.Blackboard.SetInt("SelectedLevel", -1);
+            // MF.Blackboard.SetInt("SelectedLevel", -1);
         }
     }
 }
