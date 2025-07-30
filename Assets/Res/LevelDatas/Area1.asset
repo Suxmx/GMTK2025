@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7701fae2e6964aedafbc152b0687e3ce, type: 3}
+  m_Name: Area1
+  m_EditorClassIdentifier: 
+  areaName: The Beginning
+  levels:
+  - {fileID: 11400000, guid: 3aa76d04037b562419c665c5204547a1, type: 2}
+  - {fileID: 11400000, guid: 2c3b1a4df7c72d04f894f8c4465ea6c2, type: 2}

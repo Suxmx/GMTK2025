@@ -11,7 +11,7 @@ namespace GMTK
             gameStateComponent.PushGameState(EGameState.Menu.ToString(), new MenuState());
             gameStateComponent.PushGameState(EGameState.Game.ToString(), new MainGameState());
             gameStateComponent.PushGameState(EGameState.GameOver.ToString(), new GameOverState());
-
+            gameStateComponent.PushGameState(EGameState.SelectLevel.ToString(), new SelectLevelState());
             gameStateComponent.SetAsStartState(EGameState.Splash.ToString());
         }
     }

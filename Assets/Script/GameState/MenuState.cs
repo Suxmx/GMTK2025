@@ -20,22 +20,21 @@ namespace GMTK
             {
                 MF.Cutscene.FadeCutScene(GlobalConstants.CutSceneFadeDuration);
             }
-            MF.Event.Subscribe<OnRequireEnterGame>(RequireEnterGame);
+            MF.Event.Subscribe<OnRequireEnterSelectLevel>(RequireEnterSelectLevel);
         }
 
         protected override void OnStateExit()
         {
             base.OnStateExit();
-            MF.Event.Unsubscribe<OnRequireEnterGame>(RequireEnterGame);
+            MF.Event.Unsubscribe<OnRequireEnterSelectLevel>(RequireEnterSelectLevel);
         }
 
-        private void RequireEnterGame(object sender, OnRequireEnterGame e)
+        private void RequireEnterSelectLevel(object sender, OnRequireEnterSelectLevel e)
         {
             MF.Cutscene.EnterCutScene(GlobalConstants.CutSceneEnterDuration, () =>
             {
-                GameStateComponent.RequestStateChange(EGameState.Game.ToString());
+                GameStateComponent.RequestStateChange(EGameState.SelectLevel.ToString());
             });
-            
         }
     }
 }

@@ -51,7 +51,7 @@ namespace GMTK.UI
         
         private void OnClickEnter()
         {
-            MF.Event.Fire(this,OnRequireEnterGame.Create());
+            MF.Event.Fire(this,OnRequireEnterSelectLevel.Create());
         }
         private void OnClickSettings()
         {

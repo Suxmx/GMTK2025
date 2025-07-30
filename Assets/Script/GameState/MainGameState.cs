@@ -9,6 +9,7 @@ namespace GMTK
     public class MainGameState : GameStateBase
     {
         private Transform m_ManagersRoot;
+
         protected override void OnStateEnter()
         {
             base.OnStateEnter();
@@ -18,23 +19,30 @@ namespace GMTK
 
         private void InitGame()
         {
+            if (PlayerPrefs.GetInt("SelectedLevel") == -1)
+            {
+                Debug.LogError("SelectedLevel is null");
+            }
+            
             // 加载场景
-            SceneManager.LoadScene(SceneConstants.Game);
+            SceneManager.LoadScene(PlayerPrefs.GetInt("SelectedLevel"));
             // 播放过场
             if (MF.Cutscene.IsPlaying)
             {
                 MF.Cutscene.FadeCutScene(GlobalConstants.CutSceneFadeDuration);
             }
+
             // 注册管理
             m_ManagersRoot = new GameObject("Managers").transform;
+            PlayerPrefs.SetInt("SelectedLevel", -1);
         }
-        
+
         protected override void OnStateExit()
         {
             base.OnStateExit();
-           UnRegisterEvents();
+            UnRegisterEvents();
         }
-        
+
         private void RegisterEvents()
         {
             MF.Event.Subscribe<OnRequireRestartGame>(OnRequireRestartGameHandler);
@@ -57,13 +65,12 @@ namespace GMTK
 
             MF.Cutscene.EnterCutScene(GlobalConstants.CutSceneEnterDuration, InitGame);
         }
+
         // 返回菜单
         private void OnRequireReturnMenuHandler(object sender, OnRequireReturnMenu e)
         {
-            MF.Cutscene.EnterCutScene(GlobalConstants.CutSceneEnterDuration, () =>
-            {
-                GameStateComponent.RequestStateChange(EGameState.Menu.ToString());
-            });
+            MF.Cutscene.EnterCutScene(GlobalConstants.CutSceneEnterDuration,
+                () => { GameStateComponent.RequestStateChange(EGameState.Menu.ToString()); });
         }
     }
 }

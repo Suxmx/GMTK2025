@@ -7,7 +7,8 @@ namespace GMTK
         Preload,
         Menu,
         Game,
-        GameOver
+        GameOver,
+        SelectLevel
     }
     
 }

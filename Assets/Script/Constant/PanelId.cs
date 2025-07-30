@@ -5,5 +5,6 @@ namespace GMTK
         public const int Menu = 1;
         public const int Game = 2;
         public const int Setting = 3;
+        public const int SelectLevel = 4;
     }
 }
