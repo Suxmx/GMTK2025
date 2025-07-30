@@ -12,6 +12,7 @@ using DG.Tweening;
 using GMTK.EventArgs;
 using MemoFramework.Extension;
 using MemoFramework.GameState;
+using UnityEditor.Experimental.GraphView;
 
 namespace GMTK.UI.LevelSelect
 {
@@ -85,7 +86,8 @@ namespace GMTK.UI.LevelSelect
         {
             if (_button.interactable)
             {
-                PlayerPrefs.SetInt("SelectedLevel", levelData.sceneID);
+                /*PlayerPrefs.SetInt("SelectedLevel", levelData.sceneID);*/
+                MF.Blackboard.SetInt("SelectedLevel", levelData.sceneID);
                 MF.Event.Fire(this,OnRequireEnterGame.Create());
             }
         }

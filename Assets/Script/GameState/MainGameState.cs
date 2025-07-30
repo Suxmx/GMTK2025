@@ -19,13 +19,13 @@ namespace GMTK
 
         private void InitGame()
         {
-            if (PlayerPrefs.GetInt("SelectedLevel") == -1)
+            if (MF.Blackboard.GetInt("SelectedLevel")== -1)
             {
                 Debug.LogError("SelectedLevel is null");
             }
             
             // 加载场景
-            SceneManager.LoadScene(PlayerPrefs.GetInt("SelectedLevel"));
+            SceneManager.LoadScene(MF.Blackboard.GetInt("SelectedLevel"));
             // 播放过场
             if (MF.Cutscene.IsPlaying)
             {
@@ -34,7 +34,7 @@ namespace GMTK
 
             // 注册管理
             m_ManagersRoot = new GameObject("Managers").transform;
-            PlayerPrefs.SetInt("SelectedLevel", -1);
+            /*MF.Blackboard.SetInt("SelectedLevel", -1);*/
         }
 
         protected override void OnStateExit()
