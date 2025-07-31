@@ -529,6 +529,7 @@ public class PlatformerMotor2D : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        SendMessage("PlayerCollisionEnter", other, SendMessageOptions.DontRequireReceiver);
         if (preserveHorizontalMomentumOnLanding)
         {
             if (other.contacts[0].point.y < transform.position.y)
@@ -538,6 +539,11 @@ public class PlatformerMotor2D : MonoBehaviour
                 GetComponent<Rigidbody2D>().velocity = vel;
             }
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        SendMessage("PlayerTriggerEnter", other, SendMessageOptions.DontRequireReceiver);
     }
 
     private void FixedUpdate()

@@ -1,4 +1,5 @@
 ﻿
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -48,5 +49,15 @@ public class PlayerController2D : MonoBehaviour
         {
             _motor.Dash();
         }
+    }
+
+    private void PlayerTriggerEnter(Collider2D other)
+    {
+        Debug.Log("test trigger enter: " + other.name);
+    }
+
+    private void PlayerCollisionEnter(Collision2D other)
+    {
+        Debug.Log("test collision enter: " + other.gameObject.name);
     }
 }
