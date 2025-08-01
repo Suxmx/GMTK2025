@@ -1595,38 +1595,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6100000, guid: f53f0e5cd92ba5148aace93d59b06aaf, type: 3}
-      propertyPath: m_Size.x
-      value: 1.3208741
-      objectReference: {fileID: 0}
-    - target: {fileID: 6100000, guid: f53f0e5cd92ba5148aace93d59b06aaf, type: 3}
-      propertyPath: m_Size.y
-      value: 3.1590464
-      objectReference: {fileID: 0}
-    - target: {fileID: 6100000, guid: f53f0e5cd92ba5148aace93d59b06aaf, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.02350086
-      objectReference: {fileID: 0}
-    - target: {fileID: 6100000, guid: f53f0e5cd92ba5148aace93d59b06aaf, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.02830398
-      objectReference: {fileID: 0}
-    - target: {fileID: 2046993878454522043, guid: f53f0e5cd92ba5148aace93d59b06aaf, type: 3}
-      propertyPath: allowDash
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2046993878454522043, guid: f53f0e5cd92ba5148aace93d59b06aaf, type: 3}
-      propertyPath: checkMask.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 6661084644584007880, guid: f53f0e5cd92ba5148aace93d59b06aaf, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 6661084644584007880, guid: f53f0e5cd92ba5148aace93d59b06aaf, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.85
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
