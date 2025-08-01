@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using GMTK.EventArgs;
 using MemoFramework.Extension;
 using UnityEngine;
@@ -7,26 +8,31 @@ namespace GMTK.UI
 {
     public class MainGameForm : MonoBehaviour
     {
-        [Header("序列化按钮")] 
-        [SerializeField] private Button pauseBtn;
+        [Header("序列化按钮")] [SerializeField] private Button pauseBtn;
         [SerializeField] private Button pausePanel_SettingBtn;
         [SerializeField] private Button pausePanel_RestartBtn;
         [SerializeField] private Button pausePanel_ReturnBtn;
         [SerializeField] private Button pausePanel_ResumeBtn;
-        [Header("序列化面板")]
-        [SerializeField] private GameObject pausePanel;
+        [Header("序列化面板")] [SerializeField] private GameObject pausePanel;
+
+        [Header("其他UI")] 
+        [SerializeField] private Image BG_Image;
+        private List<Sprite> BGImages = new List<Sprite>();
+
         private void Awake()
         {
-            PanelManager.Instance?.RegisterPanel(PanelId.Game,gameObject);
+            PanelManager.Instance?.RegisterPanel(PanelId.Game, gameObject);
         }
 
         private void OnDestroy()
         {
             PanelManager.Instance?.UnregisterPanel(PanelId.Game);
         }
+
         private void OnEnable()
         {
             RegisterEvents();
+            BG_Image.sprite = BGImages[MF.Blackboard.GetInt("StartSeason")];
         }
 
         private void OnDisable()
@@ -42,6 +48,7 @@ namespace GMTK.UI
             pausePanel_ReturnBtn.onClick.AddListener(OnClickReturn);
             pausePanel_ResumeBtn.onClick.AddListener(OnClickResume);
         }
+
         private void UnRegisterEvents()
         {
             pauseBtn.onClick.RemoveListener(OnClickPause);
@@ -58,28 +65,28 @@ namespace GMTK.UI
             pausePanel.SetActive(true);
             pauseBtn.gameObject.SetActive(false);
         }
-        
+
         public void OnClickResume()
         {
             pausePanel.SetActive(false);
             pauseBtn.gameObject.SetActive(true);
         }
-        
+
         public void OnClickSetting()
         {
-            PanelManager.Instance.CheckShow(PanelId.Setting,true);
+            PanelManager.Instance.CheckShow(PanelId.Setting, true);
         }
-        
+
         public void OnClickRestart()
         {
             MF.Event.Fire(this, OnRequireRestartGame.Create());
         }
-        
+
         public void OnClickReturn()
         {
             MF.Event.Fire(this, OnRequireReturnMenu.Create());
         }
-        
+
         #endregion
     }
 }

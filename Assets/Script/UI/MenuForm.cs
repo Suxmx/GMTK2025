@@ -2,6 +2,7 @@ using System;
 using GMTK.EventArgs;
 using I2.Loc;
 using MemoFramework.Extension;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -51,6 +52,7 @@ namespace GMTK.UI
         
         private void OnClickEnter()
         {
+            MF.Blackboard.SetInt("StartSeason", 0);
             MF.Event.Fire(this,OnRequireEnterGame.Create());
         }
         private void OnClickSettings()
