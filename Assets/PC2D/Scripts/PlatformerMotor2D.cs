@@ -220,7 +220,7 @@ public class PlatformerMotor2D : MonoBehaviour
     /// <summary>
     /// Since the motor needs to know the facing of the object, this information is made available to anyone else who might need it.
     /// </summary>
-    public bool facingLeft { get; private set; }
+    public bool facingRight { get; private set; } = true;
 
     /// <summary>
     /// Returns the direction of the current dash. If not dashing then returns Vector2.zero.
@@ -241,7 +241,7 @@ public class PlatformerMotor2D : MonoBehaviour
     /// <summary>
     /// Set this true to have the motor fall faster. Set to false to fall at normal speeds.
     /// </summary>
-    public bool fallFast { get; set; }
+    public bool fallFast { get; set; } = false;
 
     /// <summary>
     /// If jumpingHeld is set to true then the motor will jump further. Set to false if jumping isn't 'held'.
@@ -554,6 +554,8 @@ public class PlatformerMotor2D : MonoBehaviour
             return;
         }
 
+        HandleAnimator();
+
         // First, are we trying to dash?
         if (allowDash && _dashing.pressed && Time.time >= _dashing.canDashAgain)
         {
@@ -577,6 +579,7 @@ public class PlatformerMotor2D : MonoBehaviour
 
             if (_stuckTo == Surface.Ground)
             {
+                // Debug.Log("Now Is On Ground");
                 motorState = MotorState.OnGround;
 
                 // Turn off gravity, this prevents losing some velocity on every tick.
@@ -613,10 +616,12 @@ public class PlatformerMotor2D : MonoBehaviour
                 {
                     GetComponent<Rigidbody2D>().gravityScale = _originalGravity * fastFallGravityMultiplier;
                     motorState = MotorState.FallingFast;
+                    // GetComponentInChildren<Animator>().SetBool("FastFall", true);
                 }
                 else
                 {
                     GetComponent<Rigidbody2D>().gravityScale = _originalGravity;
+                    // GetComponentInChildren<Animator>().SetBool("FastFall", false);
                 }
             }
         }
@@ -632,6 +637,25 @@ public class PlatformerMotor2D : MonoBehaviour
         ClampVelocity();
 
         _velocityBeforeTick = GetComponent<Rigidbody2D>().velocity;
+    }
+
+    private void HandleAnimator()
+    {
+        if (GetComponent<Rigidbody2D>().velocity.x != 0)
+        {
+            GetComponentInChildren<Animator>().SetBool("Move", true);
+        }
+        else
+        {
+            GetComponentInChildren<Animator>().SetBool("Move", false);
+        }
+        
+        if (GetComponent<Rigidbody2D>().velocity.y == 0 || _stuckTo == Surface.Ground)
+        {
+            GetComponentInChildren<Animator>().SetBool("Jump", false);
+            GetComponentInChildren<Animator>().SetBool("DoubleJump", false);
+            // GetComponentInChildren<Animator>().SetBool("FastFall", false);
+        }
     }
 
     private void SetDashFunctions()
@@ -690,6 +714,8 @@ public class PlatformerMotor2D : MonoBehaviour
                 // Normal jump.
                 GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x,
                     CalculateJumpSpeed() + _jumping.extraSpeed);
+                // Debug.Log("Normal jump");
+                GetComponentInChildren<Animator>().SetBool("Jump", true);
             }
             else if (_wallInfo.onCorner)
             {
@@ -697,6 +723,8 @@ public class PlatformerMotor2D : MonoBehaviour
                 GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x,
                     CalculateJumpSpeed() * cornerJumpMultiplier);
                 _ignoreMovementUntil = Time.time + IGNORE_INPUT_TIME;
+                // Debug.Log("Jump on a corner");
+                GetComponentInChildren<Animator>().SetBool("Jump", true);
             }
             else if (allowWallJump && _stuckTo == Surface.LeftWall)
             {
@@ -709,23 +737,33 @@ public class PlatformerMotor2D : MonoBehaviour
 
                 // If wall jump is allowed but not wall slide then double jump will not be allowed earlier, allow it now.
                 _jumping.doubleJumped = false;
+                // Debug.Log("Jump on a Left wall");
+                GetComponentInChildren<Animator>().SetBool("Jump", true);
             }
             else if (allowWallJump && _stuckTo == Surface.RightWall)
             {
                 GetComponent<Rigidbody2D>().velocity = _upLeft * CalculateJumpSpeed() * wallJumpMultiplier;
                 _ignoreMovementUntil = Time.time + IGNORE_INPUT_TIME;
                 _jumping.doubleJumped = false;
+                // Debug.Log("Jump on a Right wall");
+                GetComponentInChildren<Animator>().SetBool("Jump", true);
             }
             else if (allowDoubleJump && _stuckTo == Surface.None && !_jumping.doubleJumped)
             {
                 GetComponent<Rigidbody2D>().velocity =
                     new Vector2(GetComponent<Rigidbody2D>().velocity.x, CalculateJumpSpeed());
                 _jumping.doubleJumped = true;
+                // Debug.Log("Double jump, is stuck in: " + _stuckTo.ToString());
+                GetComponentInChildren<Animator>().SetBool("Jump", false);
+                GetComponentInChildren<Animator>().SetBool("DoubleJump", true);
             }
             else
             {
                 // Guess we aren't jumping!
+                // Debug.Log("Can't jump");
                 jumped = false;
+                // GetComponentInChildren<Animator>().SetBool("Jump", false);
+                // GetComponentInChildren<Animator>().SetBool("DoubleJump", false);
             }
 
             if (jumped)
@@ -812,7 +850,7 @@ public class PlatformerMotor2D : MonoBehaviour
                 {
                     if (!_wallInfo.climbing && _wallInfo.canHangAgain)
                     {
-                        Debug.Log("Start climbing up the wall");
+                        // Debug.Log("Start climbing up the wall");
 
                         _wallInfo.clinging = false;
                         _wallInfo.climbing = true;
@@ -822,7 +860,7 @@ public class PlatformerMotor2D : MonoBehaviour
 
                     if (_wallInfo.climbing && Time.time >= _wallInfo.climbTime)
                     {
-                        Debug.Log("Climbing the wall : Times out");
+                        // Debug.Log("Climbing the wall : Times out");
                         _wallInfo.climbing = false;
                     }
 
@@ -858,7 +896,7 @@ public class PlatformerMotor2D : MonoBehaviour
                 {
                     if (!_wallInfo.clinging && _wallInfo.canHangAgain)
                     {
-                        Debug.Log("Start clinging in the wall");
+                        // Debug.Log("Start clinging in the wall");
                         _wallInfo.clinging = true;
                         _wallInfo.canHangAgain = false;
                         _wallInfo.clingTime = Time.time + wallClingDuration;
@@ -866,7 +904,7 @@ public class PlatformerMotor2D : MonoBehaviour
 
                     if (_wallInfo.clinging && Time.time >= _wallInfo.clingTime)
                     {
-                        Debug.Log("Clinging the wall : Times out");
+                        // Debug.Log("Clinging the wall : Times out");
                         _wallInfo.clinging = false;
                     }
                     
@@ -1007,6 +1045,8 @@ public class PlatformerMotor2D : MonoBehaviour
                 }
             }
         }
+
+        
     }
 
     private void Accelerate(float acceleration, float limit)
@@ -1071,7 +1111,7 @@ public class PlatformerMotor2D : MonoBehaviour
         if (!_dashing.dashWithDirection)
         {
             // We dash depending on our direction.
-            _dashing.dashDir = facingLeft ? -Vector2.right : Vector2.right;
+            _dashing.dashDir = facingRight ? Vector2.right : -Vector2.right;
         }
 
         _dashing.start = transform.position;
@@ -1111,15 +1151,30 @@ public class PlatformerMotor2D : MonoBehaviour
 
     private void SetFacing()
     {
-        if (normalizedXMovement < 0)
+        /*if (normalizedXMovement < 0)
         {
-            facingLeft = true;
+            facingRight = false;
         }
         else if (normalizedXMovement > 0)
         {
-            facingLeft = false;
+            facingRight = true;
+        }*/
+        if ((normalizedXMovement < 0 && facingRight) || (normalizedXMovement > 0 && !facingRight))
+        {
+            GetComponent<Transform>().Rotate(0,180,0);
+            facingRight = !facingRight;
         }
+        
     }
+    
+    /*private void FlipHandler(float xVelocity)
+    {
+        if ((xVelocity < 0 && _motor.facingRight) || (xVelocity > 0 && !_motor.facingRight))
+        {
+            GetComponent<Transform>().Rotate(0,180,0);
+            _motor.facingRight = !_motor.facingRight;
+        }
+    }*/
 
     private bool CheckIfAtCorner()
     {
@@ -1231,7 +1286,7 @@ public class PlatformerMotor2D : MonoBehaviour
 
         Collider2D col = Physics2D.OverlapArea(min, max, checkMask);
 
-        _stuckTo = col != null ? Surface.Ground : Surface.None;
+        _stuckTo = (col != null) ? Surface.Ground : Surface.None;
 
         if (_stuckTo == Surface.None)
         {
@@ -1282,7 +1337,7 @@ public class PlatformerMotor2D : MonoBehaviour
             if (_stuckTo != Surface.LeftWall && _stuckTo != Surface.RightWall)
             {
                 _wallInfo.climbing = false;
-                Debug.Log("There is no wall to climb, now stuck to: " + _stuckTo);
+                // Debug.Log("There is no wall to climb, now stuck to: " + _stuckTo);
                 GetComponent<Rigidbody2D>().gravityScale = _originalGravity;
             }
         }
