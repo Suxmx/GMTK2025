@@ -189,6 +189,9 @@ MonoBehaviour:
   wallJumpMultiplier: 1.35
   allowWallCling: 1
   wallClingDuration: 1
+  allowWallClimb: 1
+  wallClimbingDuration: 2
+  wallClimbingSpeed: 2
   allowWallSlide: 1
   wallSlideSpeed: 1
   allowCornerGrab: 1

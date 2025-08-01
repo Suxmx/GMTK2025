@@ -49,4 +49,12 @@ public class PlayerController2D : MonoBehaviour
             _motor.Dash();
         }
     }
+
+    private void FlipHandler(float xVelocity)
+    {
+        if ((xVelocity > 0 && _motor.facingLeft) || (xVelocity < 0 && !_motor.facingLeft))
+        {
+            GetComponent<Transform>().Rotate(0,180,0);
+        }
+    }
 }

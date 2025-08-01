@@ -599,7 +599,7 @@ public class PlatformerMotor2D : MonoBehaviour
 
             // Finally, any wall interactions.
             HandleWallInteraction();
-            
+
             if (_wallInfo.climbing && !Input.GetKey(KeyCode.W))
             {
                 _wallInfo.climbing = false;
@@ -800,19 +800,21 @@ public class PlatformerMotor2D : MonoBehaviour
                 }
             }
         }
-        
+
         // wall climb?
         if (allowWallClimb)
         {
             if ((Input.GetKey(KeyCode.W) || _wallInfo.climbing))
             {
                 //                if ((_stuckTo == Surface.LeftWall && normalizedXMovement < -wallInteractionThreshold) || (_stuckTo == Surface.RightWall && normalizedXMovement > wallInteractionThreshold))
-                if ((_stuckTo == Surface.LeftWall ) ||
+                if ((_stuckTo == Surface.LeftWall) ||
                     (_stuckTo == Surface.RightWall))
                 {
                     if (!_wallInfo.climbing && _wallInfo.canHangAgain)
                     {
                         Debug.Log("Start climbing up the wall");
+
+                        _wallInfo.clinging = false;
                         _wallInfo.climbing = true;
                         _wallInfo.canHangAgain = false;
                         _wallInfo.climbTime = Time.time + wallClimbingDuration;
@@ -867,15 +869,20 @@ public class PlatformerMotor2D : MonoBehaviour
                         Debug.Log("Clinging the wall : Times out");
                         _wallInfo.clinging = false;
                     }
-
+                    
                     if (_wallInfo.clinging)
                     {
-                        
                         GetComponent<Rigidbody2D>().gravityScale = 0;
                         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
                         motorState = MotorState.Clinging;
-
+                        
+                        if (Input.GetKey(KeyCode.W))
+                        {
+                            _wallInfo.clinging = false;
+                            _wallInfo.climbing = true;
+                        }
+                        
                         return;
                     }
                 }
@@ -1268,7 +1275,7 @@ public class PlatformerMotor2D : MonoBehaviour
                 }
             }
         }
-        
+
         if (_wallInfo.climbing)
         {
             // there is no wall
