@@ -806,8 +806,9 @@ public class PlatformerMotor2D : MonoBehaviour
         {
             if ((Input.GetKey(KeyCode.W) || _wallInfo.climbing))
             {
-                if ((_stuckTo == Surface.LeftWall && normalizedXMovement < -wallInteractionThreshold) ||
-                    (_stuckTo == Surface.RightWall && normalizedXMovement > wallInteractionThreshold))
+                //                if ((_stuckTo == Surface.LeftWall && normalizedXMovement < -wallInteractionThreshold) || (_stuckTo == Surface.RightWall && normalizedXMovement > wallInteractionThreshold))
+                if ((_stuckTo == Surface.LeftWall ) ||
+                    (_stuckTo == Surface.RightWall))
                 {
                     if (!_wallInfo.climbing && _wallInfo.canHangAgain)
                     {
