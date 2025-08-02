@@ -18,6 +18,7 @@ namespace GMTK
         {
             if (other.CompareTag("Player"))
             {
+                GameManager.Instance.TryUpdateCurrentSpawnPoint(this);
             }
         }
     }
