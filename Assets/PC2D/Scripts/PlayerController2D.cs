@@ -67,15 +67,17 @@ public class PlayerController2D : MonoBehaviour
     {
         if(Die)return;
         Die = true;
-        _motor.enabled = false;
+      
         _rigidbody.velocity = Vector2.zero;
+        _motor.frozen = true;
         MF.Event.Fire(this,OnPlayerDie.Create());
     }
     public void RequestRespawn()
     {
         if(!Die)return;
-        _motor.enabled = true;
+        _motor.frozen = false;
         Die = false;
+        MF.Event.Fire(this,OnPlayerRespawn.Create());
     }
 
     /*private void FlipHandler(float xVelocity)
