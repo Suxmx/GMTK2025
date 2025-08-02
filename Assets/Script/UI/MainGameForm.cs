@@ -17,7 +17,7 @@ namespace GMTK.UI
 
         [Header("其他UI")] 
         [SerializeField] private Image BG_Image;
-        private List<Sprite> BGImages = new List<Sprite>();
+        [SerializeField] private List<Sprite> BGImages = new List<Sprite>();
 
         private void Awake()
         {
