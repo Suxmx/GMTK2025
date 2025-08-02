@@ -13,6 +13,7 @@ namespace GMTK
         Winter = 3,
     }
 
+	[DefaultExecutionOrder(-1000)]
     public class SeasonManager : MonoBehaviour
     {
         public static SeasonManager Instance { get; private set; }
@@ -23,7 +24,7 @@ namespace GMTK
             if (Instance == null)
             {
                 Instance = this;
-                DontDestroyOnLoad(gameObject);
+               
             }
             else
             {

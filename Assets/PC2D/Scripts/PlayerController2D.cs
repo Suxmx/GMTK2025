@@ -1,4 +1,6 @@
 ﻿
+using GMTK;
+using GMTK.EventArgs;
 using MemoFramework.Extension;
 using UnityEngine;
 
@@ -65,7 +67,15 @@ public class PlayerController2D : MonoBehaviour
     {
         if(Die)return;
         Die = true;
-        // MF
+        _motor.enabled = false;
+        _rigidbody.velocity = Vector2.zero;
+        MF.Event.Fire(this,OnPlayerDie.Create());
+    }
+    public void RequestRespawn()
+    {
+        if(!Die)return;
+        _motor.enabled = true;
+        Die = false;
     }
 
     /*private void FlipHandler(float xVelocity)
