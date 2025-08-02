@@ -32,7 +32,7 @@ namespace GMTK.UI
         private void OnEnable()
         {
             RegisterEvents();
-            // BG_Image.sprite = BGImages[MF.Blackboard.GetInt("StartSeason")];
+            BG_Image.sprite = BGImages[MF.Blackboard.GetInt("StartSeason")];
         }
 
         private void OnDisable()
