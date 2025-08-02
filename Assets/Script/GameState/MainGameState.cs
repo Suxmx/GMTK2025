@@ -25,15 +25,13 @@ namespace GMTK
         {
             // 加载场景
             SceneManager.LoadScene(SceneConstants.Game);
+            // 注册管理
+            m_ManagersRoot = new GameObject("Managers").transform;
             // 播放过场
             if (MF.Cutscene.IsPlaying)
             {
                 MF.Cutscene.FadeCutScene(GlobalConstants.CutSceneFadeDuration);
             }
-
-            // 注册管理
-            m_ManagersRoot = new GameObject("Managers").transform;
-            currentSeason = (Seasons)MF.Blackboard.GetInt("StartSeason");
         }
 
         protected override void OnStateExit()

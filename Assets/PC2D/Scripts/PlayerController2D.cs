@@ -1,4 +1,5 @@
 ﻿
+using MemoFramework.Extension;
 using UnityEngine;
 
 /// <summary>
@@ -7,6 +8,8 @@ using UnityEngine;
 [RequireComponent(typeof(PlatformerMotor2D))]
 public class PlayerController2D : MonoBehaviour
 {
+    public bool Die { get; private set; }
+    
     private PlatformerMotor2D _motor;
     private Animator _animator;
     private Rigidbody2D _rigidbody;
@@ -56,6 +59,13 @@ public class PlayerController2D : MonoBehaviour
         {
             _motor.Dash();
         }
+    }
+
+    public void RequestDie()
+    {
+        if(Die)return;
+        Die = true;
+        // MF
     }
 
     /*private void FlipHandler(float xVelocity)
