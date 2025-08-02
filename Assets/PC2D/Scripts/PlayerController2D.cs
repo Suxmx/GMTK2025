@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using GMTK;
 using MemoFramework.Extension;
+using TMPro.EditorUtilities;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// This class is a simple example of how to build a controller that interacts with PlatformerMotor2D.
@@ -15,11 +17,11 @@ public class PlayerController2D : MonoBehaviour
     private PlatformerMotor2D _motor;
     private Animator _animator;
     private Rigidbody2D _rigidbody;
-
-    private GameObject BoxsPrefab;
+    
+    private GameObject BulletPrefab;
 
     private List<SpecialBox> BoxsBuildTime;
-    [SerializeField] private List<Sprite> BoxSprites = new List<Sprite>();
+    public List<Sprite> BoxSprites = new List<Sprite>();
 
     // Use this for initialization
     void Start()
@@ -63,9 +65,14 @@ public class PlayerController2D : MonoBehaviour
             _motor.fallFast = false;
         }
 
-        if (Input.GetButtonDown(PC2D.Input.DASH))
+        if (Input.GetMouseButtonDown(0))
         {
-            ShouldBuild();
+            _motor.HandleBuild();
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            _motor.HandleFire();
         }
 
         /*if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -81,22 +88,5 @@ public class PlayerController2D : MonoBehaviour
         if(Die)return;
         Die = true;
         // MF
-    }
-
-    public void ShouldBuild()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, Vector2.down, Mathf.Infinity, _motor.checkMask);
-        if (hit.collider != null && ((this.transform.position.y - hit.transform.position.y) > 2.0F))
-        {
-            /*
-            Debug.DrawRay(this.transform.position, Vector2.down * 10f, Color.red, 1f);
-            Debug.Log(hit.transform.position);
-            */
-            SpecialBoxManager.instance.BuildBox(this.transform.position + new Vector3(0,hit.transform.position.y-this.transform.position.y+0.5F,0));
-            /*GameObject go = Instantiate(BoxsPrefab, hit.transform.position+new Vector3(0,0.5f,0), Quaternion.identity);
-            SpecialBox sb = go.GetComponent<SpecialBox>();
-            sb.sprite = BoxSprites[(int)SeasonManager.Instance.CurrentSeason];
-            BoxsBuildTime.Add(sb);*/
-        }
     }
 }

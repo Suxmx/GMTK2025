@@ -1,4 +1,6 @@
 ﻿using System;
+using GMTK;
+using MemoFramework.Extension;
 using PC2D;
 using UnityEngine;
 using Input = UnityEngine.Input;
@@ -142,6 +144,10 @@ public class PlatformerMotor2D : MonoBehaviour
     /// When the motor will be allowed to dash again after dashing. The cooldown begins at the end of a dash.
     /// </summary>
     public float dashCooldown = 1;
+    
+    public float LastFireTime = -1;
+
+    public float FireCooldown = 1;
 
     /// <summary>
     /// How far the motor will dash.
@@ -565,6 +571,8 @@ public class PlatformerMotor2D : MonoBehaviour
         }
 
         HandleAnimator();
+        
+        // Build or Attack
 
         // First, are we trying to dash?
         if (allowDash && _dashing.pressed && Time.time >= _dashing.canDashAgain)
@@ -833,6 +841,37 @@ public class PlatformerMotor2D : MonoBehaviour
                     onJump();
                 }
             }
+        }
+    }
+
+    public void HandleFire()
+    {
+        if (_stuckTo == Surface.Ground && Time.time >= LastFireTime + FireCooldown)
+        {
+            //Can Fire
+            Debug.Log("Can Fire");
+            LastFireTime = Time.time;
+            _anima.SetTrigger("Fire");
+        }
+        else
+        {
+            Debug.Log("Can't Fire");
+        }
+    }
+    public void HandleBuild()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, Vector2.down, Mathf.Infinity, checkMask);
+        if (hit.collider != null && ((this.transform.position.y - hit.transform.position.y) > 2.0F))
+        {
+            /*
+            Debug.DrawRay(this.transform.position, Vector2.down * 10f, Color.red, 1f);
+            Debug.Log(hit.transform.position);
+            */
+            SpecialManager.instance.BuildBox(this.transform.position + new Vector3(0,hit.transform.position.y-this.transform.position.y+0.5F,0));
+            /*GameObject go = Instantiate(BoxsPrefab, hit.transform.position+new Vector3(0,0.5f,0), Quaternion.identity);
+            SpecialBox sb = go.GetComponent<SpecialBox>();
+            sb.sprite = BoxSprites[(int)SeasonManager.Instance.CurrentSeason];
+            BoxsBuildTime.Add(sb);*/
         }
     }
 

@@ -5,19 +5,26 @@ using UnityEngine;
 
 namespace GMTK
 {
-    public class SpecialBoxManager : MonoBehaviour
+    public class SpecialManager : MonoBehaviour
     {
-        public static SpecialBoxManager instance { get; private set; }
+        public static SpecialManager instance { get; private set; }
+
+        public GameObject BulletPrefab;
         public GameObject BoxPrefab;
+        
         public List<Sprite> SpecialBoxSprites;
+        public List<Sprite> SpecialBulletSprites;
         private List<SpecialBox> SpecialBoxesList = new List<SpecialBox>();
+        
         [SerializeField] private int maxSpecialBoxes = 4;
+        [SerializeField] private int BulletSpeed = 5;
 
         private void Awake()
         {
             if (instance == null)
             {
                 instance = this;
+                Clear();
             }
         }
 
@@ -29,10 +36,25 @@ namespace GMTK
                 return;
             }
             GameObject go = Instantiate(BoxPrefab, createPosition, Quaternion.identity);
-            go.GetComponent<SpriteRenderer>().sprite = SpecialBoxSprites[0];
-            // SpecialBox sb = go.GetComponent<SpecialBox>();
+            
+            SpecialBox box = go.GetComponent<SpecialBox>();
+            
+            box.SetSprite(SpecialBoxSprites[0]);
+            /*go.GetComponent<SpriteRenderer>().sprite = SpecialBoxSprites[0];*/
             // sb.SetSprite(SpecialBoxSprites[(int)SeasonManager.Instance.CurrentSeason]);
-            SpecialBoxesList.Add(go.GetComponent<SpecialBox>());
+            SpecialBoxesList.Add(box);
+        }
+
+        public void BuildBullet(Vector3 createPosition, Vector2 direction)
+        {
+            GameObject go = Instantiate(BulletPrefab, createPosition, Quaternion.identity);
+            
+            SpecialBullet sb = go.GetComponent<SpecialBullet>();
+            
+            go.GetComponent<SpriteRenderer>().sprite = SpecialBulletSprites[0];
+            
+            // sb.SetSprite(SpecialBulletSprites[0]);
+            sb.SetVelocity(direction * BulletSpeed);
         }
 
         public void RemoveSpecialBox(SpecialBox sb)

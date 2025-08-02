@@ -22,7 +22,7 @@ namespace GMTK
         {
             if (Time.time - buildTime > KillTime)
             {
-                SpecialBoxManager.instance.RemoveSpecialBox(this);
+                SpecialManager.instance.RemoveSpecialBox(this);
             }
         }
     }
