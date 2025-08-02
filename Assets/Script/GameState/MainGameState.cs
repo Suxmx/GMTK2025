@@ -1,14 +1,19 @@
+using System.Collections.Generic;
 using GMTK.EventArgs;
 using MemoFramework.Extension;
 using MemoFramework.GameState;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 namespace GMTK
 {
     public class MainGameState : GameStateBase
     {
+        public Seasons currentSeason;
         private Transform m_ManagersRoot;
+
         protected override void OnStateEnter()
         {
             base.OnStateEnter();
@@ -25,16 +30,18 @@ namespace GMTK
             {
                 MF.Cutscene.FadeCutScene(GlobalConstants.CutSceneFadeDuration);
             }
+
             // 注册管理
             m_ManagersRoot = new GameObject("Managers").transform;
+            currentSeason = (Seasons)MF.Blackboard.GetInt("StartSeason");
         }
-        
+
         protected override void OnStateExit()
         {
             base.OnStateExit();
-           UnRegisterEvents();
+            UnRegisterEvents();
         }
-        
+
         private void RegisterEvents()
         {
             MF.Event.Subscribe<OnRequireRestartGame>(OnRequireRestartGameHandler);
@@ -57,13 +64,12 @@ namespace GMTK
 
             MF.Cutscene.EnterCutScene(GlobalConstants.CutSceneEnterDuration, InitGame);
         }
+
         // 返回菜单
         private void OnRequireReturnMenuHandler(object sender, OnRequireReturnMenu e)
         {
-            MF.Cutscene.EnterCutScene(GlobalConstants.CutSceneEnterDuration, () =>
-            {
-                GameStateComponent.RequestStateChange(EGameState.Menu.ToString());
-            });
+            MF.Cutscene.EnterCutScene(GlobalConstants.CutSceneEnterDuration,
+                () => { GameStateComponent.RequestStateChange(EGameState.Menu.ToString()); });
         }
     }
 }

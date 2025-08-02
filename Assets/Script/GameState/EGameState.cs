@@ -9,5 +9,13 @@ namespace GMTK
         Game,
         GameOver
     }
+
+    public enum Seasons : byte
+    {
+        Spring,
+        Summer,
+        Autumn,
+        Winter,
+    }
     
 }
