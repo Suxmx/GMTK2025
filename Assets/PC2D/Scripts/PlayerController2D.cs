@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+using GMTK;
 using MemoFramework.Extension;
 using UnityEngine;
 
@@ -14,12 +16,18 @@ public class PlayerController2D : MonoBehaviour
     private Animator _animator;
     private Rigidbody2D _rigidbody;
 
+    private GameObject BoxsPrefab;
+
+    private List<SpecialBox> BoxsBuildTime;
+    [SerializeField] private List<Sprite> BoxSprites = new List<Sprite>();
+
     // Use this for initialization
     void Start()
     {
         _motor = GetComponent<PlatformerMotor2D>();
         _animator = GetComponentInChildren<Animator>();
         _rigidbody = GetComponent<Rigidbody2D>();
+        BoxsBuildTime = new List<SpecialBox>();
     }
 
     // Update is called once per frame
@@ -57,8 +65,15 @@ public class PlayerController2D : MonoBehaviour
 
         if (Input.GetButtonDown(PC2D.Input.DASH))
         {
-            _motor.Dash();
+            ShouldBuild();
         }
+
+        /*if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            ShouldBuild();
+        }*/
+        
+        
     }
 
     public void RequestDie()
@@ -68,12 +83,20 @@ public class PlayerController2D : MonoBehaviour
         // MF
     }
 
-    /*private void FlipHandler(float xVelocity)
+    public void ShouldBuild()
     {
-        if ((xVelocity < 0 && _motor.facingRight) || (xVelocity > 0 && !_motor.facingRight))
+        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, Vector2.down, Mathf.Infinity, _motor.checkMask);
+        if (hit.collider != null && ((this.transform.position.y - hit.transform.position.y) > 2.0F))
         {
-            GetComponent<Transform>().Rotate(0,180,0);
-            _motor.facingRight = !_motor.facingRight;
+            /*
+            Debug.DrawRay(this.transform.position, Vector2.down * 10f, Color.red, 1f);
+            Debug.Log(hit.transform.position);
+            */
+            SpecialBoxManager.instance.BuildBox(this.transform.position + new Vector3(0,hit.transform.position.y-this.transform.position.y+0.5F,0));
+            /*GameObject go = Instantiate(BoxsPrefab, hit.transform.position+new Vector3(0,0.5f,0), Quaternion.identity);
+            SpecialBox sb = go.GetComponent<SpecialBox>();
+            sb.sprite = BoxSprites[(int)SeasonManager.Instance.CurrentSeason];
+            BoxsBuildTime.Add(sb);*/
         }
-    }*/
+    }
 }
