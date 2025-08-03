@@ -13,12 +13,15 @@ namespace GMTK
 
         private void PlayerCollisionEnter(Collision2D collision)
         {
-            
+            if (collision.gameObject.TryGetComponent<DamageSlot>(out var slot))
+            {
+                _controller.RequestDie();
+            }
         }
 
         private void PlayerTriggerEnter(Collider2D other)
         {
-            if (other.CompareTag("Die"))
+            if (other.TryGetComponent<DamageSlot>(out var slot))
             {
                 _controller.RequestDie();
             }
