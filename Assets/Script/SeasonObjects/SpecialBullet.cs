@@ -11,22 +11,11 @@ namespace GMTK
     {
         private float createTime;
         [SerializeField] private float Duration;
-        private SpriteRenderer spriteRenderer;
 
         private void Start()
         {
             Debug.Log("Create a bullet");
             createTime = Time.time;
-            spriteRenderer = GetComponent<SpriteRenderer>();
-        }
-
-        public void SetSprite(Sprite sprite)
-        {
-            if (spriteRenderer == null)
-            {
-                Debug.LogError("SpriteRenderer is null.");
-            }
-            spriteRenderer.sprite = sprite;
         }
 
         public void SetVelocity(Vector2 velocity)

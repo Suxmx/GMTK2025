@@ -13,7 +13,6 @@ namespace GMTK
         public GameObject BoxPrefab;
         
         public List<Sprite> SpecialBoxSprites;
-        public List<Sprite> SpecialBulletSprites;
         private List<SpecialBox> SpecialBoxesList = new List<SpecialBox>();
         
         [SerializeField] private int maxSpecialBoxes = 4;
@@ -39,8 +38,7 @@ namespace GMTK
             
             SpecialBox box = go.GetComponent<SpecialBox>();
             
-            box.SetSprite(SpecialBoxSprites[0]);
-            /*go.GetComponent<SpriteRenderer>().sprite = SpecialBoxSprites[0];*/
+            go.GetComponent<SpriteRenderer>().sprite = SpecialBoxSprites[0];
             // sb.SetSprite(SpecialBoxSprites[(int)SeasonManager.Instance.CurrentSeason]);
             SpecialBoxesList.Add(box);
         }
@@ -50,8 +48,6 @@ namespace GMTK
             GameObject go = Instantiate(BulletPrefab, createPosition, Quaternion.identity);
             
             SpecialBullet sb = go.GetComponent<SpecialBullet>();
-            
-            go.GetComponent<SpriteRenderer>().sprite = SpecialBulletSprites[0];
             
             // sb.SetSprite(SpecialBulletSprites[0]);
             sb.SetVelocity(direction * BulletSpeed);

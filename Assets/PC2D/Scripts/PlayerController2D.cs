@@ -1,6 +1,7 @@
 ﻿
 using System.Collections.Generic;
 using GMTK;
+using GMTK.EventArgs;
 using MemoFramework.Extension;
 using TMPro.EditorUtilities;
 using UnityEngine;
@@ -88,5 +89,13 @@ public class PlayerController2D : MonoBehaviour
         if(Die)return;
         Die = true;
         // MF
+    }
+    
+    public void RequestRespawn()
+    {
+        if(!Die)return;
+        _motor.frozen = false;
+        Die = false;
+        MF.Event.Fire(this,OnPlayerRespawn.Create());
     }
 }
