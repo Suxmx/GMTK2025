@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using GMTK;
 using GMTK.EventArgs;
 using MemoFramework.Extension;
-using TMPro.EditorUtilities;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 /// <summary>
 /// This class is a simple example of how to build a controller that interacts with PlatformerMotor2D.
