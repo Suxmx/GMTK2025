@@ -29,7 +29,7 @@ public class PlayerController2D : MonoBehaviour
     void Start()
     {
         _motor = GetComponent<PlatformerMotor2D>();
-        _animator = GetComponentInChildren<Animator>();
+        _animator = transform.Find("Animator").GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody2D>();
         BoxsBuildTime = new List<SpecialBox>();
     }
