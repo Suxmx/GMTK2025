@@ -21,6 +21,8 @@ public class PlayerController2D : MonoBehaviour
 
     private List<SpecialBox> BoxsBuildTime;
     public List<Sprite> BoxSprites = new List<Sprite>();
+    
+    [SerializeField] private AudioSource _audioSource;
     private 
 
     // Use this for initialization
@@ -91,6 +93,8 @@ public class PlayerController2D : MonoBehaviour
         _rigidbody.velocity = Vector2.zero;
         _motor.frozen = true;
         MF.Event.Fire(this, OnPlayerDie.Create());
+        
+        _audioSource.Play();
     }
     
     public void RequestRespawn()
