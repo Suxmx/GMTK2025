@@ -8,6 +8,7 @@ namespace GMTK
     {
         [SerializeField] private PlayableDirector director;
         [SerializeField] private GameObject env;
+        [SerializeField] private AudioSource winSource;
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
@@ -15,6 +16,7 @@ namespace GMTK
                 Destroy(other.gameObject);
                 env.SetActive(false);
                 director.Play();
+                winSource?.Play();
             }
         }
     }
