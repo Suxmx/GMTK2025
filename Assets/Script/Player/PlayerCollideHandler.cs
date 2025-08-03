@@ -21,6 +21,7 @@ namespace GMTK
 
         private void PlayerTriggerEnter(Collider2D other)
         {
+			Debug.Log($"Player collided with: {other.gameObject.name}");
             if (other.TryGetComponent<DamageSlot>(out var slot))
             {
                 _controller.RequestDie();
