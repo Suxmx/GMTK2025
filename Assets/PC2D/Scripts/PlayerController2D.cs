@@ -87,6 +87,8 @@ public class PlayerController2D : MonoBehaviour
     {
         if(Die)return;
         Die = true;
+        _animator.SetTrigger("Die");
+        //OtherDieAnima?
         // MF
     }
     
