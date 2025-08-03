@@ -44,7 +44,7 @@ namespace GMTK
                     OnSpring();
                     break;
                 case ESeason.Summer:
-                    OnSummer();
+                    OnSummer();    
                     break;
                 case ESeason.Autumn:
                     OnAutumn();

@@ -39,9 +39,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Bg
+    uniqueID: 2296711163
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: Player
     uniqueID: 2810578893
+    locked: 0
+  - name: Top
+    uniqueID: 3810384801
     locked: 0

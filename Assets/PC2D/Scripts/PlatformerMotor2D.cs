@@ -519,7 +519,7 @@ public class PlatformerMotor2D : MonoBehaviour
         _originalDrag = GetComponent<Rigidbody2D>().drag;
         _originalGravity = GetComponent<Rigidbody2D>().gravityScale;
         
-        _anima = GetComponentInChildren<Animator>();
+        _anima = transform.Find("Animator").GetComponent<Animator>();
 
         SetDashFunctions();
     }
