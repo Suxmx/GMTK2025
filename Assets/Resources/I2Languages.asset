@@ -113,6 +113,38 @@ MonoBehaviour:
       - "\u8FD4\u56DE"
       Flags: 0000
       Languages_Touch: []
+    - Term: PlayerBubble2
+      TermType: 7
+      Description: 
+      Languages:
+      - English
+      - Chinese
+      Flags: 0000
+      Languages_Touch: []
+    - Term: PlayerBubble1
+      TermType: 7
+      Description: 
+      Languages:
+      - English
+      - Chinese
+      Flags: 0000
+      Languages_Touch: []
+    - Term: StartAngleBubble1
+      TermType: 7
+      Description: 
+      Languages:
+      - English
+      - Chinese
+      Flags: 0000
+      Languages_Touch: []
+    - Term: StartPlayerBubble3
+      TermType: 7
+      Description: 
+      Languages:
+      - English
+      - Chinese
+      Flags: 0000
+      Languages_Touch: []
     CaseInsensitiveTerms: 0
     OnMissingTranslation: 1
     mTerm_AppName: 

@@ -23,6 +23,7 @@ public class PlayerController2D : MonoBehaviour
 
     private List<SpecialBox> BoxsBuildTime;
     public List<Sprite> BoxSprites = new List<Sprite>();
+    private 
 
     // Use this for initialization
     void Start()
@@ -97,5 +98,17 @@ public class PlayerController2D : MonoBehaviour
         _motor.frozen = false;
         Die = false;
         MF.Event.Fire(this,OnPlayerRespawn.Create());
+    }
+
+    public void OnStartTimeline()
+    {
+        enabled = false;
+        GetComponent<PlatformerMotor2D>().frozen = true;
+    }
+
+    public void OnEndTimeline()
+    {
+        enabled = true;
+        GetComponent<PlatformerMotor2D>().frozen = false;
     }
 }
