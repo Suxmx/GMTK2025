@@ -145,6 +145,14 @@ MonoBehaviour:
       - Chinese
       Flags: 0000
       Languages_Touch: []
+    - Term: Card
+      TermType: 4
+      Description: 
+      Languages:
+      - 
+      - 
+      Flags: 0000
+      Languages_Touch: []
     CaseInsensitiveTerms: 0
     OnMissingTranslation: 1
     mTerm_AppName: 
