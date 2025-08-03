@@ -144,6 +144,10 @@ public class PlatformerMotor2D : MonoBehaviour
     /// When the motor will be allowed to dash again after dashing. The cooldown begins at the end of a dash.
     /// </summary>
     public float dashCooldown = 1;
+
+    public float LastBoxTime = -1;
+
+    public float BoxCooldown = 3.0f;
     
     public float LastFireTime = -1;
 
@@ -863,9 +867,10 @@ public class PlatformerMotor2D : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(this.transform.position, Vector2.down, 1.0f, checkMask);
 
-        if (hit.collider == null)
+        if (hit.collider == null && Time.time >= LastBoxTime+ BoxCooldown)
         {
             /*Debug.Log("Can Build");*/
+            LastBoxTime = Time.time;
             SpecialManager.instance.BuildBox(this.transform.position + new Vector3(0,-1.0f,0));
         }
         

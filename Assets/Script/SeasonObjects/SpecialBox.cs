@@ -6,7 +6,7 @@ namespace GMTK
     public class SpecialBox : MonoBehaviour
     {
         private float buildTime;
-        [SerializeField]private float KillTime;
+        private float KillTime = 3.5f;
 
         private void Start()
         {

@@ -15,7 +15,7 @@ namespace GMTK
         public List<Sprite> SpecialBoxSprites;
         private List<SpecialBox> SpecialBoxesList = new List<SpecialBox>();
         
-        [SerializeField] private int maxSpecialBoxes = 4;
+        [SerializeField] private int maxSpecialBoxes = 3;
         [SerializeField] private int BulletSpeed = 5;
 
         private void Awake()
