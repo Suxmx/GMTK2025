@@ -12,7 +12,7 @@ namespace GMTK
     {
         // public float Length => length;
         //
-        // [LabelText("长度"), SerializeField]
+        [LabelText("长度"), SerializeField]
         private float length;
         
         [LabelText("视差移动倍率"), SerializeField]
@@ -24,7 +24,10 @@ namespace GMTK
         private Camera _mainCamera;
         private void Start()
         {
-            length = GetComponent<SpriteRenderer>().sprite.bounds.size.x;
+            if(length<=0)
+            {
+                length = GetComponent<SpriteRenderer>().sprite.bounds.size.x;
+            }
             _mainCamera = Camera.main;
             _initPlayerX = GetCameraX();
             _initX = transform.position.x;
