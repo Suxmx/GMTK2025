@@ -23,6 +23,7 @@ namespace GMTK
                 {
                     OnAnimEnd();
                 }
+                Destroy(other.gameObject);
             }
         }
 
