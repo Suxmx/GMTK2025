@@ -105,6 +105,16 @@ namespace GMTK
         }
 
         #endregion
+
+        public void QuitGame()
+        {
+            Debug.Log("退出游戏");
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+        }
         
         
     }
