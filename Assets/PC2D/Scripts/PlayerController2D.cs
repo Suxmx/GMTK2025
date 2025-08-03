@@ -88,8 +88,9 @@ public class PlayerController2D : MonoBehaviour
         if(Die)return;
         Die = true;
         _animator.SetTrigger("Die");
-        //OtherDieAnima?
-        // MF
+        _rigidbody.velocity = Vector2.zero;
+        _motor.frozen = true;
+        MF.Event.Fire(this, OnPlayerDie.Create());
     }
     
     public void RequestRespawn()

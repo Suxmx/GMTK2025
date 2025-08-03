@@ -70,9 +70,12 @@ namespace GMTK
 
         public void TryUpdateCurrentSpawnPoint(SpawnPointTrigger spawnPoint)
         {
+            Debug.Log("[GameManager] TryUpdateCurrentSpawnPoint called.Try to update spawn point: " +
+                      spawnPoint.Index);
             int spawnPointIndex = spawnPoint.Index;
             if (!MF.Blackboard.HasInt("SpawnPointIndex") || MF.Blackboard.GetInt("SpawnPointIndex") < spawnPointIndex)
             {
+                Debug.LogWarning("[GameManager] Updating current spawn point to: " + spawnPointIndex);
                 MF.Blackboard.SetInt("SpawnPointIndex", spawnPointIndex);
             }
         }
