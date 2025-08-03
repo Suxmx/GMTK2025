@@ -2014,7 +2014,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: afcb647f56afa244d8cd7dbe39490d18, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 0
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -5108,6 +5108,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4888465779333034682, guid: f53f0e5cd92ba5148aace93d59b06aaf, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888465779333034682, guid: f53f0e5cd92ba5148aace93d59b06aaf, type: 3}
       propertyPath: _audioSource
       value: 
       objectReference: {fileID: 1077286332}
@@ -7971,7 +7975,7 @@ GameObject:
   - component: {fileID: 1738623441}
   m_Layer: 0
   m_Name: ice
-  m_TagString: Untagged
+  m_TagString: Destroyable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9951,7 +9955,7 @@ GameObject:
   - component: {fileID: 2070226815}
   m_Layer: 0
   m_Name: vine
-  m_TagString: Untagged
+  m_TagString: Destroyable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

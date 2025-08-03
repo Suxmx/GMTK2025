@@ -31,15 +31,5 @@ namespace GMTK
                 Destroy(gameObject);
             }
         }
-        
-        void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.CompareTag("Player"))
-            {
-                return;
-            }
-            Debug.Log("Destroy bullet because it touch something");
-            Destroy(gameObject);
-        }
     }
 }
